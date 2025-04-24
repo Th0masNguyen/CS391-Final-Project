@@ -1,26 +1,34 @@
-interface Movie {
-  id: number;
-  title: string;
-}
+//gets the 200 most popular movies of all time as a base pool from which the game is played
 
-interface MovieResponse {
-  results: Movie[];
-}
+"use server";
 
-async function getMovies(): Promise<Movie[]> {
-  let movies: Movie[] = [];
+import { Movie } from "@/types";
 
-  for (let i = 1; i <= 5; i++) {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${i}&sort_by=vote_count.desc`, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTJjOTIzOGRlZDQ3NDkyYThkNmU3MjJkMWNjMDcxZiIsIm5iZiI6MTc0NDM4NDQ2OC4wMTEwMDAyLCJzdWIiOiI2N2Y5MzFkNDFiYzYzOTU2NmFkYTJiOTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.5hvjZR8JflCyd_GE0pPVkDxjY-c4KAgkWvEBBU7uaXo',
-        accept: 'application/json'
-      }
-    });
+export default async function getMovies(): Promise<Movie[]> {
+  const movies: Movie[] = [];
 
-    const data: MovieResponse = await response.json();
-    movies = [...movies, ...data.results];
+  try {
+    for (let i = 1; i <= 10; i++) {
+      const response = await fetch(`https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${i}&sort_by=vote_count.desc`, {
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTJjOTIzOGRlZDQ3NDkyYThkNmU3MjJkMWNjMDcxZiIsIm5iZiI6MTc0NDM4NDQ2OC4wMTEwMDAyLCJzdWIiOiI2N2Y5MzFkNDFiYzYzOTU2NmFkYTJiOTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.5hvjZR8JflCyd_GE0pPVkDxjY-c4KAgkWvEBBU7uaXo',
+          accept: 'application/json',
+        },
+      });
+
+      const data = await response.json();
+
+      //throw away fields we dont need
+      const trimmedMovies: Movie[] = data.results.map((movie: any) => ({
+        id: movie.id,
+        title: movie.title,
+      }));
+
+      movies.push(...trimmedMovies);
+    }
+  } catch (error) {
+    console.error("An error occurred while fetching movies:", error);
   }
 
   return movies;
