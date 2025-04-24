@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`flex items-center justify-center w-screen h-screen ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`flex items-center justify-center w-screen h-screen bg-[#171D1C] ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <UserProvider>
             {children}

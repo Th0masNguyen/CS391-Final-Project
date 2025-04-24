@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+import {useContext, useState} from "react";
+import {UserContext} from "@/components/UserProvider";
 
 export default function GamePage() {
     const [rounds, setRounds] = useState([]);
@@ -6,9 +8,10 @@ export default function GamePage() {
     const [score, setScore] = useState(0);
     const [answer, setAnswer] = useState("");
     const [image, setImage] = useState("");
+    const { username } = useContext(UserContext);
 
     return (
-        <main>
+        <main className={"flex flex-col items-center w-full h-full text-[#5863F8]"}>
 
         </main>
     );
