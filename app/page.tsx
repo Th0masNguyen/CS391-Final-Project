@@ -1,10 +1,16 @@
+/**
+ * Created by Eytan Mobilio (emobilio@bu.edu)
+ * The app home page, renders the UserForm component for
+ * the user to enter a username and begin the game.
+ */
 "use client";
 import {useContext} from "react";
 import {UserContext} from "@/components/UserProvider";
 import UserForm from "@/components/UserForm";
 
+// Home page component
 export default function Home() {
-    // load in the username and setUsernameState function from the user context
+    // load in the username and setUsername function from the user context
     const { username, setUsername } = useContext(UserContext);
 
     // render the home page with the UserForm component for the user to enter a username and start the game

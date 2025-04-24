@@ -1,3 +1,8 @@
+/**
+ * Created by Eytan Mobilio (emobilio@bu.edu)
+ * Contains a context providing component to share the
+ * username of the player across components in the app.
+ */
 "use client";
 import {createContext, useState, ReactNode, useEffect} from "react";
 
