@@ -17,7 +17,7 @@ type ImageResponse = {
   logos: Image[];
 };
 
-async function getImage(movieId: number): Promise<string | null> {
+export default async function getImage(movieId: number): Promise<string | null> {
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
       method: 'GET',
