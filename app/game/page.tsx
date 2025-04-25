@@ -1,3 +1,9 @@
+/**
+ * Collaborative File
+ * Contains the logic and UI for the game page, including managing game rounds
+ * by getting movies with which to play, updating UI for each round, getting
+ * images for rounds, ending the game, etc.
+ */
 "use client";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "@/components/UserProvider";
@@ -9,12 +15,22 @@ import { shuffleArray } from "@/helpers/shuffleArray"
 import ChoiceButtons from "@/components/ChoiceButtons";
 
 export default function GamePage() {
+    // Begin Eytan Mobilio's code
+    // state for the game, including round info, the correct answer, the user's score, username, etc.
     const [rounds, setRounds] = useState<RoundData[]>([]);
     const [roundNumber, setRoundNumber] = useState(0);
     const [score, setScore] = useState(0);
-    const [answer, setAnswer] = useState("");
+    const [answer, setAnswer] = useState<Movie>();
     const [image, setImage] = useState("");
     const { username } = useContext(UserContext);
+
+    // takes the user's guess (Movie object) and increments their score if they were correct
+    function checkGuess(guess: Movie) {
+        if (guess === answer) {
+            setScore(score + 1);
+        }
+    }
+    // End Eytan Mobilio's code
 
     useEffect(() => {
         // this function creates the set of images (RoundData objects) for each of the 10 rounds
@@ -43,16 +59,45 @@ export default function GamePage() {
         prepareRounds();
     }, []);
 
+    // Begin Eytan Mobilio's code
+    // useEffect that prepares new rounds when the round changes
     useEffect(() => {
-        const newAnswerId = 0;
-        const newImage = getImage(newAnswerId);
-        setImage(newImage);
-    }, [roundNumber]);
+        async function prepareImage() {
+            // get the movie id of the new round's correct answer and call getImage() to get a still from it
+            const newAnswerId = rounds[roundNumber].correct.id;
+            const newImage = await getImage(newAnswerId);
 
+            // skip this round and move to the next one if there is a problem getting the image
+            if (!newImage) {
+                setRoundNumber(roundNumber + 1);
+                return;
+            }
+
+            // set the new correct answer and the new round image
+            setAnswer(rounds[roundNumber].correct)
+            setImage(newImage);
+        }
+        prepareImage();
+    }, [roundNumber, rounds]);
+
+    // if the rounds haven't been set yet, render a loading state
+    if (rounds.length === 0 || !rounds[roundNumber]) {
+        return (
+            <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
+                <p className="text-4xl">Loading game...</p>
+            </main>
+        );
+    }
+
+    // render the main game content
     return (
         <main className={"flex flex-col items-center w-full h-full text-[#5863F8]"}>
-            {/*{rounds[roundNumber]}*/}
+            <ChoiceButtons
+                options={rounds[roundNumber].options}
+                onGuess={checkGuess}
+            />
         </main>
     );
+    // End Eytan Mobilio's code
 }
 
