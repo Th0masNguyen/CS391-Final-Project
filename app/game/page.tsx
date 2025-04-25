@@ -22,6 +22,7 @@ export default function GamePage() {
     const [score, setScore] = useState(0);
     const [answer, setAnswer] = useState<Movie>();
     const [image, setImage] = useState("");
+    const [roundReady, setRoundReady] = useState(false);
     const { username } = useContext(UserContext);
 
     // takes the user's guess (Movie object) and increments their score if they were correct
@@ -63,6 +64,14 @@ export default function GamePage() {
     // useEffect that prepares new rounds when the round changes
     useEffect(() => {
         async function prepareImage() {
+            // wait until the rounds are ready
+            if (!rounds[roundNumber]) {
+                return;
+            }
+
+            // set roundReady state to false to show loading state
+            setRoundReady(false);
+
             // get the movie id of the new round's correct answer and call getImage() to get a still from it
             const newAnswerId = rounds[roundNumber].correct.id;
             const newImage = await getImage(newAnswerId);
@@ -73,18 +82,19 @@ export default function GamePage() {
                 return;
             }
 
-            // set the new correct answer and the new round image
+            // set the new correct answer, the new round image, and roundReady to true
             setAnswer(rounds[roundNumber].correct)
             setImage(newImage);
+            setRoundReady(true);
         }
         prepareImage();
     }, [roundNumber, rounds]);
 
-    // if the rounds haven't been set yet, render a loading state
-    if (rounds.length === 0 || !rounds[roundNumber]) {
+    // if the rounds or image haven't been set yet, render a loading state
+    if (rounds.length === 0 || !rounds[roundNumber] || !image || !roundReady) {
         return (
             <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
-                <p className="text-4xl">Loading game...</p>
+                <p className="text-4xl">Loading...</p>
             </main>
         );
     }
@@ -92,7 +102,7 @@ export default function GamePage() {
     // render the main game content
     return (
         <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
-            <img src={image} alt={"Round image"} className={"w-[50%] h-auto border-2 border-[#5863F8]"} />
+            <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
             <ChoiceButtons
                 options={rounds[roundNumber].options}
                 onGuess={checkGuess}
