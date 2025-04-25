@@ -91,7 +91,8 @@ export default function GamePage() {
 
     // render the main game content
     return (
-        <main className={"flex flex-col items-center w-full h-full text-[#5863F8]"}>
+        <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
+            <img src={image} alt={"Round image"} className={"w-[50%] h-auto border-2 border-[#5863F8]"} />
             <ChoiceButtons
                 options={rounds[roundNumber].options}
                 onGuess={checkGuess}
