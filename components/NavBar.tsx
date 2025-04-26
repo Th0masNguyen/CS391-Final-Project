@@ -14,7 +14,7 @@ export default function Header() {
           <Link href="/" className={linkStyling}>
             Home
           </Link>
-          <Link href="/halloween" className={linkStyling}>
+          <Link href="/leaderboard" className={linkStyling}>
             Leaderboard
           </Link>
         </nav>
