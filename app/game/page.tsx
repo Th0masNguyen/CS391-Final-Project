@@ -27,6 +27,7 @@ export default function GamePage() {
     const [image, setImage] = useState("");
     const [roundReady, setRoundReady] = useState(false);
     const { username } = useContext(UserContext);
+    // End Eytan Mobilio's code
     const [answered, setAnswered] = useState(false); //Colton Connolly's code
 
     // Begin Lance Sinson's code
@@ -34,7 +35,7 @@ export default function GamePage() {
     const [selectedOption, setSelectedOption] = useState<Movie | null>(null);
     // End Lance Sinson's code
 
-
+    // Begin Eytan Mobilio's code
     // takes the user's guess (Movie object) and increments their score if they were correct
     function checkGuess(guess: Movie) {
 
@@ -130,9 +131,9 @@ export default function GamePage() {
             </main>
         );
     }
+    // End Eytan Mobilio's code
 
     //Begin Colton Connolly's code
-
     function nextRound() {
         setRoundNumber(roundNumber+1);
     }
@@ -158,10 +159,11 @@ export default function GamePage() {
     }
     //End Colton Connolly's code
 
+    // Begin Eytan Mobilio's code
     // render the main game content
     return (
-        <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
-            <GameStateDisplay roundNumber={roundNumber} score={score}/>
+        <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
+            <GameStateDisplay roundNumber={roundNumber} score={score} username={username}/>
 
             <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
 

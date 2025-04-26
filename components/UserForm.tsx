@@ -51,7 +51,7 @@ export default function UserForm({ username, setUsername } : { username: string,
                 type="submit"
                 className={"bg-[#5863F8] text-2xl text-black mt-8 w-[70%] p-1 rounded hover:bg-[#5158BB]"}
             >
-                Start
+                Play
             </button>
 
             {/* conditionally render the error message if there is one */}
