@@ -29,7 +29,10 @@ export default function GamePage() {
     const [roundReady, setRoundReady] = useState(false);
     const { username } = useContext(UserContext);
     // End Eytan Mobilio's code
-    const [answered, setAnswered] = useState(false); //Colton Connolly's code
+    //Begin Colton Connolly's code
+    const [answered, setAnswered] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
+    //End Colton Connolly's code
     // Begin Lance Sinson's code
     const [guessState, setGuessState] = useState<"unanswered" | "correct" | "incorrect">("unanswered");
     const [selectedOption, setSelectedOption] = useState<Movie | null>(null);
@@ -126,7 +129,13 @@ export default function GamePage() {
     // End Eytan Mobilio's code
 
     //Begin Colton Connolly's code
-    function displayProperButtons() {
+
+    function endGame() {
+        return;
+    }
+
+
+    function displayProperOptions() {
         if(!answered) {
             return(
                 <>
@@ -137,16 +146,14 @@ export default function GamePage() {
                     />
                 </>
             );
-        } else if(roundNumber === 9) {
-            return (
-                <>
-                <GameEndDisplay/>
-                </>
-            )
         } else {
             return (
                 <>
-                    <NextRoundButton onSelect={nextRound} round={roundNumber}/>
+                    <RoundFeedback
+                    guessState={guessState}
+                    correctAnswer={answer?.title}
+                    />
+                    <NextRoundButton  onSelectIfOver={endGame} onSelectIfNotOver={nextRound} round={roundNumber}/>
                 </>
             )
         }
@@ -170,12 +177,9 @@ export default function GamePage() {
 
             <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
 
-            <RoundFeedback
-                guessState={guessState}
-                correctAnswer={answer?.title}
-            />
+            
 
-            {displayProperButtons()}  {/* Colton Connolly wrote this */}
+            {displayProperOptions()}  {/* Colton Connolly wrote this */}
         </main>
     );
     // End Eytan Mobilio's code
