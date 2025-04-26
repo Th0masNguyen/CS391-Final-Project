@@ -90,6 +90,7 @@ export default function GamePage() {
             setAnswer(rounds[roundNumber].correct)
             setImage(newImage);
             setRoundReady(true);
+            setAnswered(false);
         }
         prepareImage();
     }, [roundNumber, rounds]);
@@ -104,6 +105,11 @@ export default function GamePage() {
     }
 
     //Begin Colton Connolly's code
+
+    function nextRound() {
+        setRoundNumber(roundNumber+1);
+    }
+
     function displayProperButtons() {
         if(answered === false) {
             return(
@@ -117,7 +123,7 @@ export default function GamePage() {
         } else {
             return (
                 <>
-                    <NextRoundButton/>
+                    <NextRoundButton onSelect={nextRound}/>
                 </>
             )
         }
