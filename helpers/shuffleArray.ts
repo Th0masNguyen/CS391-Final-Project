@@ -1,3 +1,8 @@
+/**
+ * Created by Lance Sinson (ssinson@bu.edu)
+ * A helper function to shuffle an array
+ */
+
 // shuffles an array
 export function shuffleArray<T>(arr: T[]): T[] {
     const copy = [...arr];

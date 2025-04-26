@@ -15,6 +15,7 @@ import { shuffleArray } from "@/helpers/shuffleArray"
 import ChoiceButtons from "@/components/ChoiceButtons";
 import GameStateDisplay from "@/components/GameStateDisplay";
 import NextRoundButton from "@/components/NextRoundButton";
+import RoundFeedback from "@/components/RoundFeedback";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
@@ -28,15 +29,34 @@ export default function GamePage() {
     const { username } = useContext(UserContext);
     const [answered, setAnswered] = useState(false); //Colton Connolly's code
 
+    // Begin Lance Sinson's code
+    const [guessState, setGuessState] = useState<"unanswered" | "correct" | "incorrect">("unanswered");
+    const [selectedOption, setSelectedOption] = useState<Movie | null>(null);
+    // End Lance Sinson's code
+
+
     // takes the user's guess (Movie object) and increments their score if they were correct
     function checkGuess(guess: Movie) {
+
         setAnswered(true);
+
+        setSelectedOption(guess);
+
+
         if (guess === answer) {
             setScore(score + 1);
+
+            // Begin Lance Sinson's code
+            setGuessState("correct");
+        } else {
+            setGuessState("incorrect");
         }
+            // End Lance Sinson's code
     }
+
     // End Eytan Mobilio's code
 
+    // Begin Lance Sinson's code
     useEffect(() => {
         // this function creates the set of images (RoundData objects) for each of the 10 rounds
         async function prepareRounds() {
@@ -63,6 +83,7 @@ export default function GamePage() {
 
         prepareRounds();
     }, []);
+    // End Lance Sinson's code
 
     // Begin Eytan Mobilio's code
     // useEffect that prepares new rounds when the round changes
@@ -91,6 +112,12 @@ export default function GamePage() {
             setImage(newImage);
             setRoundReady(true);
             setAnswered(false);
+
+            // Begin Lance Sinson's code
+            // reset guess states for this new round
+            setGuessState("unanswered");
+            setSelectedOption(null)
+            // End Lance Sinson's code
         }
         prepareImage();
     }, [roundNumber, rounds]);
@@ -117,6 +144,7 @@ export default function GamePage() {
                 <ChoiceButtons
                     options={rounds[roundNumber].options}
                     onGuess={checkGuess}
+                    selectedOption={selectedOption}
                 />
             </>
             );
@@ -134,8 +162,15 @@ export default function GamePage() {
     return (
         <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
             <GameStateDisplay roundNumber={roundNumber} score={score}/>
+
             <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
+
             {displayProperButtons()}  {/* Colton Connolly wrote this */}
+
+            <RoundFeedback
+                guessState={guessState}
+                correctAnswer={answer?.title}
+            />
 
         </main>
     );
