@@ -17,6 +17,7 @@ import GameStateDisplay from "@/components/GameStateDisplay";
 import NextRoundButton from "@/components/NextRoundButton";
 import RoundFeedback from "@/components/RoundFeedback";
 import GameEndDisplay from "@/components/GameEndDisplay";
+import addScore from "@/lib/AddScoreToDb";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
@@ -132,6 +133,7 @@ export default function GamePage() {
 
     function endGame() {
         setGameOver(true);
+        addScore(username, score);
     }
 
     function displayEndGameOrNot() {
