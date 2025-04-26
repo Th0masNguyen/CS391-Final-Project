@@ -13,6 +13,7 @@ import {Movie, RoundData} from "@/types"
 import { pickRandomIncorrect } from "@/helpers/pickRandomIncorrect";
 import { shuffleArray } from "@/helpers/shuffleArray"
 import ChoiceButtons from "@/components/ChoiceButtons";
+import GameStateDisplay from "@/components/GameStateDisplay";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
@@ -102,6 +103,7 @@ export default function GamePage() {
     // render the main game content
     return (
         <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
+            <GameStateDisplay roundNumber={roundNumber} score={score}/>
             <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
             <ChoiceButtons
                 options={rounds[roundNumber].options}
