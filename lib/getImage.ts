@@ -1,5 +1,6 @@
-//gets still image from a movie by movie id
-//should be called at start of each round
+//written by Thomas Nguyen (nguyen04@bu.edu)
+//Gets a random image by movieId
+//Unfortunately impossible to fully distinguish movie stills and posters with this api
 
 "use server";
 
