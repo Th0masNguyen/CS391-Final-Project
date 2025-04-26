@@ -27,25 +27,21 @@ export default function GamePage() {
     const [image, setImage] = useState("");
     const [roundReady, setRoundReady] = useState(false);
     const { username } = useContext(UserContext);
+    // End Eytan Mobilio's code
     const [answered, setAnswered] = useState(false); //Colton Connolly's code
-
     // Begin Lance Sinson's code
     const [guessState, setGuessState] = useState<"unanswered" | "correct" | "incorrect">("unanswered");
     const [selectedOption, setSelectedOption] = useState<Movie | null>(null);
     // End Lance Sinson's code
 
-
+    // Begin Eytan Mobilio's code
     // takes the user's guess (Movie object) and increments their score if they were correct
     function checkGuess(guess: Movie) {
-
         setAnswered(true);
-
         setSelectedOption(guess);
-
 
         if (guess === answer) {
             setScore(score + 1);
-
             // Begin Lance Sinson's code
             setGuessState("correct");
         } else {
@@ -53,8 +49,13 @@ export default function GamePage() {
         }
             // End Lance Sinson's code
     }
-
     // End Eytan Mobilio's code
+
+    // Begin Colton Connolly's code
+    function nextRound() {
+        setRoundNumber(roundNumber+1);
+    }
+    // End Colton Connolly's code
 
     // Begin Lance Sinson's code
     useEffect(() => {
@@ -121,32 +122,19 @@ export default function GamePage() {
         }
         prepareImage();
     }, [roundNumber, rounds]);
-
-    // if the rounds or image haven't been set yet, render a loading state
-    if (rounds.length === 0 || !rounds[roundNumber] || !image || !roundReady) {
-        return (
-            <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
-                <p className="text-4xl">Loading...</p>
-            </main>
-        );
-    }
+    // End Eytan Mobilio's code
 
     //Begin Colton Connolly's code
-
-    function nextRound() {
-        setRoundNumber(roundNumber+1);
-    }
-
     function displayProperButtons() {
-        if(answered === false) {
+        if(!answered) {
             return(
                 <>
-                <ChoiceButtons
-                    options={rounds[roundNumber].options}
-                    onGuess={checkGuess}
-                    selectedOption={selectedOption}
-                />
-            </>
+                    <ChoiceButtons
+                        options={rounds[roundNumber].options}
+                        onGuess={checkGuess}
+                        selectedOption={selectedOption}
+                    />
+                </>
             );
         } else {
             return (
@@ -158,20 +146,29 @@ export default function GamePage() {
     }
     //End Colton Connolly's code
 
+    // Begin Eytan Mobilio's code
+    // if the rounds or image haven't been set yet, render a loading state
+    if (rounds.length === 0 || !rounds[roundNumber] || !image || !roundReady) {
+        return (
+            <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
+                <p className="text-4xl">Loading...</p>
+            </main>
+        );
+    }
+
     // render the main game content
     return (
-        <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
-            <GameStateDisplay roundNumber={roundNumber + 1} score={score}/>
+        <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
+            <GameStateDisplay roundNumber={roundNumber + 1} score={score} username={username}/>
 
             <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
-
-            {displayProperButtons()}  {/* Colton Connolly wrote this */}
 
             <RoundFeedback
                 guessState={guessState}
                 correctAnswer={answer?.title}
             />
 
+            {displayProperButtons()}  {/* Colton Connolly wrote this */}
         </main>
     );
     // End Eytan Mobilio's code

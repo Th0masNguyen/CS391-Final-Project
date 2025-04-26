@@ -4,7 +4,8 @@
  * with (will be stored in the db with their score), checks for valid
  * usernames and starts the game on submit (redirects to the game page).
  */
-import {FormEvent, useState} from "react";import {redirect} from "next/navigation";
+import {FormEvent, useState} from "react";
+import {redirect} from "next/navigation";
 
 // Takes the username (string) and setUsername function to change the username state and renders a form
 // for the user to enter a username and begin the game
@@ -51,7 +52,7 @@ export default function UserForm({ username, setUsername } : { username: string,
                 type="submit"
                 className={"bg-[#5863F8] text-2xl text-black mt-8 w-[70%] p-1 rounded hover:bg-[#5158BB]"}
             >
-                Start
+                Play
             </button>
 
             {/* conditionally render the error message if there is one */}

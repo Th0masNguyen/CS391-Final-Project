@@ -2,13 +2,8 @@
  * Created by Lance Sinson (ssinson@bu.edu)
  * A component to show the answer choices for each round
  */
-import { Movie } from "@/types";
+import {ChoiceButtonsProps } from "@/types";
 
-interface ChoiceButtonsProps {
-    options: Movie[];
-    onGuess: (movie: Movie) => void;
-    selectedOption: Movie | null;
-}
 
 // takes in options, a list of Movie objects
 // takes in onGuess, a function to handle the onClick
@@ -20,8 +15,8 @@ export default function ChoiceButtons({
                                           selectedOption,
                                       }: ChoiceButtonsProps) {
     return (
-        <div className="w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
-            <div className="flex flex-col gap-4">
+        <div className="w-[80%] md:w-[50%] h-auto border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
+            <div className="grid grid-cols-2 gap-4">
                 {options.map((option) => {
                     // Check if this option is the currently selected one
                     const isSelected = selectedOption && selectedOption.id === option.id;
