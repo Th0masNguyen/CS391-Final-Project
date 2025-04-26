@@ -1,5 +1,7 @@
-
-//This code was written by Colton Connolly
+/** 
+ * Created by Colton Connolly (coltonc@bu.edu)
+ * A component to bring the user to the next round or end the game
+*/
 
 import React from "react";
 import {NextRoundButtonsProps} from "@/types";

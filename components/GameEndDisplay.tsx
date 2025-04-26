@@ -1,5 +1,8 @@
 
-//This code was written by Colton Connolly
+/** 
+ * Created by Colton Connolly (coltonc@bu.edu)
+ * A component to show the user the game has ended
+*/
 
 
 export default function GameEndDisplay() {
