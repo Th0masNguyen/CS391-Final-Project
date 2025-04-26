@@ -16,6 +16,7 @@ import ChoiceButtons from "@/components/ChoiceButtons";
 import GameStateDisplay from "@/components/GameStateDisplay";
 import NextRoundButton from "@/components/NextRoundButton";
 import RoundFeedback from "@/components/RoundFeedback";
+import GameEndDisplay from "@/components/GameEndDisplay";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
@@ -112,7 +113,7 @@ export default function GamePage() {
             setAnswer(rounds[roundNumber].correct)
             setImage(newImage);
             setRoundReady(true);
-            setAnswered(false);
+            setAnswered(false); //Colton Connolly wrote this
 
             // Begin Lance Sinson's code
             // reset guess states for this new round
@@ -136,10 +137,16 @@ export default function GamePage() {
                     />
                 </>
             );
+        } else if(roundNumber === 9) {
+            return (
+                <>
+                <GameEndDisplay/>
+                </>
+            )
         } else {
             return (
                 <>
-                    <NextRoundButton onSelect={nextRound}/>
+                    <NextRoundButton onSelect={nextRound} round={roundNumber}/>
                 </>
             )
         }

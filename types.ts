@@ -16,6 +16,7 @@ export type GameStateProps = {
 
 export type NextRoundButtonsProps = {
   onSelect: () => void;
+  round: number;
 }
 
 export type ChoiceButtonsProps = {
