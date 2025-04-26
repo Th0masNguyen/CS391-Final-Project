@@ -14,6 +14,7 @@ import { pickRandomIncorrect } from "@/helpers/pickRandomIncorrect";
 import { shuffleArray } from "@/helpers/shuffleArray"
 import ChoiceButtons from "@/components/ChoiceButtons";
 import GameStateDisplay from "@/components/GameStateDisplay";
+import NextRoundButton from "@/components/NextRoundButton";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
@@ -25,9 +26,11 @@ export default function GamePage() {
     const [image, setImage] = useState("");
     const [roundReady, setRoundReady] = useState(false);
     const { username } = useContext(UserContext);
+    const [answered, setAnswered] = useState(false); //Colton Connolly's code
 
     // takes the user's guess (Movie object) and increments their score if they were correct
     function checkGuess(guess: Movie) {
+        setAnswered(true);
         if (guess === answer) {
             setScore(score + 1);
         }
@@ -100,15 +103,34 @@ export default function GamePage() {
         );
     }
 
+    //Begin Colton Connolly's code
+    function displayProperButtons() {
+        if(answered === false) {
+            return(
+                <>
+                <ChoiceButtons
+                    options={rounds[roundNumber].options}
+                    onGuess={checkGuess}
+                />
+            </>
+            );
+        } else {
+            return (
+                <>
+                    <NextRoundButton/>
+                </>
+            )
+        }
+    }
+    //End Colton Connolly's code
+
     // render the main game content
     return (
         <main className={"flex flex-col items-center pt-30 w-full h-full text-[#5863F8]"}>
             <GameStateDisplay roundNumber={roundNumber} score={score}/>
             <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
-            <ChoiceButtons
-                options={rounds[roundNumber].options}
-                onGuess={checkGuess}
-            />
+            {displayProperButtons()}  {/* Colton Connolly wrote this */}
+
         </main>
     );
     // End Eytan Mobilio's code
