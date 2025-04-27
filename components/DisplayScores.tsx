@@ -12,13 +12,13 @@ export default async function DisplayScores() {
     return(
         <table className="table-auto border">
             <tr>
-                <th className="px-10 py-2 text-4xl border">Name</th>
-                <th className="px-10 py-2 text-4xl border">Score</th>
+                <th className="px-10 py-2 text-5xl border">Name</th>
+                <th className="px-10 py-2 text-5xl border">Score</th>
             </tr>
             {scores.map((s) =>
                 <tr>
-                    <td>{s.name}</td>
-                    <td>{s.score}</td>
+                    <td className="px-10 py-2 text-2xl border">{s.name}</td>
+                    <td className="px-10 py-2 text-2xl border">{s.score}</td>
                 </tr>
             )}
         </table>
