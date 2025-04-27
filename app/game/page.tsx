@@ -140,7 +140,7 @@ export default function GamePage() {
         if(gameOver) {
             return (
                 <>
-                    <GameEndDisplay/>
+                    <GameEndDisplay score={score}/>
                 </>
             );
         } else {

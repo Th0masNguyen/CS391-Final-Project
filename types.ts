@@ -14,6 +14,10 @@ export type GameStateProps = {
   username: string;
 };
 
+export type GameEndProps = {
+  score: number;
+};
+
 export type NextRoundButtonsProps = {
   onSelectIfOver: () => void;
   onSelectIfNotOver: () => void;
