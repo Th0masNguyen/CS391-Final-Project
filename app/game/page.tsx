@@ -149,7 +149,7 @@ export default function GamePage() {
     // render the main game content
     //Begin Colton Connolly's code
     return (
-        <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-20"}>
+        <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-25 pb-10"}>
             {/* If the game is over, render the GameEndDisplay component, otherwise
              render the GameState component and the current round image */}
             {
@@ -158,7 +158,7 @@ export default function GamePage() {
                 :
                     <>
                         <GameStateDisplay roundNumber={roundNumber + 1} score={score} username={username}/>
-                        <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
+                        <img src={image} alt={"Round image"} className={"max-md:w-[80%] w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
                     </>
             }
 

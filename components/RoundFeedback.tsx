@@ -8,13 +8,13 @@ export default function RoundFeedback({ guessState, correctAnswer }: RoundFeedba
 
     if (guessState === "correct") {
         return (
-            <div className="w-[80%] md:w-[50%] h-auto mb-5 border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
+            <div className="max-md:w-[80%] w-[50%] h-auto mb-5 border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
                 <p className="text-green-500 text-xl text-center font-bold">Correct!</p>
             </div>
         );
     } else if (guessState === "incorrect") {
         return (
-            <div className="w-[80%] md:w-[50%] h-auto mb-5 border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
+            <div className="max-md:w-[80%] w-[50%] h-auto mb-5 border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
                 <div className="text-red-500 text-xl text-center font-bold">
                     <p>Incorrect</p>
                     {correctAnswer ? (

@@ -15,7 +15,7 @@ export default function ChoiceButtons({
                                           selectedOption,
                                       }: ChoiceButtonsProps) {
     return (
-        <div className="w-[80%] md:w-[50%] h-auto border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
+        <div className="max-md:w-[80%] w-[50%] h-auto border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">
             <div className="grid grid-cols-2 gap-4">
                 {options.map((option) => {
                     // Check if this option is the currently selected one
@@ -38,6 +38,7 @@ export default function ChoiceButtons({
                                 disabled:cursor-not-allowed
                                 border-green-400 
                                 border-1
+                                flex items-center justify-center
                              `}
                         >
                             {option.title}

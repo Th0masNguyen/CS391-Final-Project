@@ -41,11 +41,11 @@ export default function UserForm({ username, setUsername } : { username: string,
 
     return (
         <form
-            className={"flex flex-col lg:w-[30%] w-[80%] items-center justify-center rounded bg-b color-[#5863F8] p-10 border-2 border-[#5863F8]"}
+            className={"flex flex-col w-[30%] max-md:w-[80%] items-center justify-center rounded bg-b color-[#5863F8] p-10 border-2 border-[#5863F8]"}
             onSubmit={handleSubmit}
         >
             {/* input for username */}
-            <label htmlFor={"username"} className={"text-2xl font-semibol mb-1"}>Username</label>
+            <label htmlFor={"username"} className={"text-2xl font-semibold mb-1"}>Username</label>
             <input
                 id={"username"}
                 name={"username"}
