@@ -33,6 +33,7 @@ export default function GamePage() {
     const [answer, setAnswer] = useState<Movie>();
     const [image, setImage] = useState("");
     const [roundReady, setRoundReady] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const { username } = useContext(UserContext);
     // End Eytan Mobilio's code
     //Begin Colton Connolly's code
@@ -78,27 +79,31 @@ export default function GamePage() {
     useEffect(() => {
         // this function creates the set of images (RoundData objects) for each of the 10 rounds
         async function prepareRounds() {
-            const allMovies = await getRandomMovies(); // get 40 random movies
-            // pick 10 correct movies
-            const correctMovies = allMovies.slice(0, 10);
+            try {
+                setErrorMessage("");
+                const allMovies = await getRandomMovies(); // get 40 random movies
 
-            console.log(correctMovies);
+                // pick 10 correct movies
+                const correctMovies = allMovies.slice(0, 10);
 
-            const newRounds = correctMovies.map((correctMovie) => {
-                // pick 3 random from the rest
-                const threeRandomIncorrect = pickRandomIncorrect(allMovies, correctMovie.id, 3);
+                const newRounds = correctMovies.map((correctMovie) => {
+                    // pick 3 random from the rest
+                    const threeRandomIncorrect = pickRandomIncorrect(allMovies, correctMovie.id, 3);
 
-                // combine the 3 random choices with the correct answer and shuffle them
-                const fourOptions = shuffleArray([correctMovie, ...threeRandomIncorrect]);
+                    // combine the 3 random choices with the correct answer and shuffle them
+                    const fourOptions = shuffleArray([correctMovie, ...threeRandomIncorrect]);
 
-                return {
-                    correct: correctMovie,
-                    options: fourOptions,
-                };
-            });
+                    return {
+                        correct: correctMovie,
+                        options: fourOptions,
+                    };
+                });
 
-            console.log(newRounds);
-            setRounds(newRounds);
+                setRounds(newRounds);
+            } catch {
+                // set an error message to display if there are any errors fetching movie data
+                setErrorMessage("Error fetching round data, please try again later.");
+            }
         }
 
         prepareRounds();
@@ -144,11 +149,15 @@ export default function GamePage() {
     // End Eytan Mobilio's code
 
     // Begin Eytan Mobilio's code
-    // if the rounds or image haven't been set yet, render a loading state
-    if (rounds.length === 0 || !rounds[roundNumber] || !image || !roundReady) {
+    // if the rounds or image haven't been set yet, render a loading state, and if there are any errors, display them
+    if (rounds.length === 0 || !rounds[roundNumber] || !image || !roundReady || errorMessage) {
         return (
-            <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
-                <p className="text-4xl">Loading...</p>
+            <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] text-center"}>
+                {errorMessage ?
+                    <p className="text-4xl text-red-600">{errorMessage}</p>
+                :
+                    <p className="text-4xl">Loading...</p>
+                }
             </main>
         );
     }

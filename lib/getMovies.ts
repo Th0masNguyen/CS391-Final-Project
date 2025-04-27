@@ -31,6 +31,7 @@ export default async function getMovies(n: number = 300): Promise<Movie[]> {
     }
   } catch (error) {
     console.error("An error occurred while fetching movies:", error);
+    throw new Error("Error fetching round data, please try again later.");
   }
 
   return movies;
