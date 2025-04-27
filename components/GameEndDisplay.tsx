@@ -7,7 +7,7 @@
 import { GameEndProps } from "@/types";
 import Link from "next/link";
 
-
+// Shows the user the game is over, and displays their score and links them to the leaderboard page
 export default function GameEndDisplay({score}: GameEndProps) {
     return(
         <div className="flex flex-col items-center justify-center max-md:w-[80%] w-[50%] h-[20%] mb-5 border-2 border-[#5863F8] rounded-lg p-4 text-white bg-[#1a1a2e]">

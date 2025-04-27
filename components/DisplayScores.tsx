@@ -6,9 +6,12 @@
 
 import getAllScores from "@/lib/getAllScores";
 
+// Function that displays all of the scores in the database in a table
 export default async function DisplayScores() {
+    // Call function that gets scores from db
     const scores = await getAllScores();
 
+    // Return table that is filled by mapping names and scores into their own rows/cols
     return(
         <table className="table-auto border">
             <thead>

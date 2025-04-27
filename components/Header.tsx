@@ -6,6 +6,7 @@
 
 import Link from "next/link";
 
+// Header/navbar for navigation, goes at the top of every page
 export default function Header() {
     const linkStyling = "max-md:p-0.5 max-md:m-1 p-1 m-2 text-xl hover:underline text-white";
     return (

@@ -7,11 +7,13 @@
 import DisplayScores from "@/components/DisplayScores"
 import { Metadata } from "next";
 
+// Metadata for leaderboard page
 export const metadata: Metadata = {
     title: "Leaderboard | FlickPic",
     description: "See the top scores and players in FlickPic!",
 };
 
+// Displays leaderboard title, and uses component that dipslays leaderboard scores and names
 export default function Leaderboard() {
     return(
         <main className={"flex flex-col justify-center items-center w-full h-full text-[#5863F8] pt-25 pb-10"}>
