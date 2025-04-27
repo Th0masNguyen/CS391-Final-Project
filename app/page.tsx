@@ -1,7 +1,8 @@
 /**
  * Created by Eytan Mobilio (emobilio@bu.edu)
  * The app home page, renders the UserForm component for
- * the user to enter a username and begin the game.
+ * the user to enter a username and begin the game,
+ * along with some instructions.
  */
 "use client";
 import {useContext} from "react";
