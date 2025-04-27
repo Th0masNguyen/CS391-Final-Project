@@ -4,6 +4,11 @@
  * by getting movies with which to play, updating UI for each round, getting
  * images for rounds, ending the game, etc.
  */
+
+/**
+ * There are other files written by us aside from components, such as ones in lib
+ */
+
 "use client";
 import {useContext, useEffect, useState} from "react";
 import {UserContext} from "@/components/UserProvider";
