@@ -32,3 +32,8 @@ export type RoundFeedbackProps = {
   guessState: GuessState;
   correctAnswer?: string;
 };
+
+export type ScoreProps = {
+  name: string;
+  score: number;
+};

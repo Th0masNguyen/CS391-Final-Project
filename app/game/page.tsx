@@ -17,7 +17,7 @@ import GameStateDisplay from "@/components/GameStateDisplay";
 import NextRoundButton from "@/components/NextRoundButton";
 import RoundFeedback from "@/components/RoundFeedback";
 import GameEndDisplay from "@/components/GameEndDisplay";
-import addScore from "@/lib/AddScoreToDb";
+import addScore from "@/lib/addScoreToDb";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
