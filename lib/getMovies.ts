@@ -22,7 +22,7 @@ export default async function getMovies(n: number = 300): Promise<Movie[]> {
       const data = await response.json();
 
       //throw away fields we dont need
-      const trimmedMovies: Movie[] = data.results.map((movie: any) => ({
+      const trimmedMovies: Movie[] = data.results.map((movie: Movie) => ({
         id: movie.id,
         title: movie.title,
       }));

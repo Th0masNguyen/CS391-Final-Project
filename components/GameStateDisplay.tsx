@@ -10,7 +10,7 @@ export default function GameStateDisplay({ roundNumber, score, username }: GameS
           Round: <span className="text-[#5863F8] font-bold">{roundNumber}</span>
         </span>
         <span>
-          {username}'s Score: <span className="text-[#58f8c4] font-bold">{score}</span>
+          {username}&apos;s Score: <span className="text-[#58f8c4] font-bold">{score}</span>
         </span>
       </div>
     </div>
