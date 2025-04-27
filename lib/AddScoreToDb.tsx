@@ -1,5 +1,9 @@
 
-// Colton Connolly wrote this file
+/** 
+ * Created by Colton Connolly (coltonc@bu.edu)
+ * Adds user's score to database for leaderboard
+*/
+
 
 "use server";
 
@@ -14,9 +18,12 @@ export default async function addScore(name : string, score : number) {
   });
 
   if(!res.acknowledged) {
+    console.log("Failed adding");
     return "insertion failed"
   } else {
+    console.log("Success adding");
     return "success"
+    
   }
   
 }

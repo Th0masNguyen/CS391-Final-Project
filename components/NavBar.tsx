@@ -11,6 +11,9 @@ export default function Header() {
     return (
       <header className="flex justify-between items-center h-20">
         <nav className="p-2 m-4">
+          <Link href="/" className="text-2xl font-semibold pr-5 text-[#5863F8]">
+            FlickPic
+          </Link>
           <Link href="/" className={linkStyling}>
             Home
           </Link>
