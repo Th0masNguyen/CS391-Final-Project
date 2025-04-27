@@ -22,7 +22,7 @@ export default function Home() {
             <UserForm username={username} setUsername={setUsername} />
 
             {/* Game instructions */}
-            <ul className="mt-5 text-center space-y-2 text-xl">
+            <ul className="mt-5 text-center space-y-2 text-xl p-1">
                 <li>Guess which movie each image came from.</li>
                 <li>You have 10 rounds to get as many correct as you can.</li>
                 <li>See if you can get to the top of the leaderboard!</li>
