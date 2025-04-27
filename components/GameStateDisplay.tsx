@@ -1,4 +1,5 @@
-//Displays the current round number and score count
+//written by Thomas Nguyen (nguyen04@bu.edu)
+//Displays the current round number and user's score count
 
 import {GameStateProps} from "@/types";
 
