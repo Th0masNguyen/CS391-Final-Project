@@ -7,7 +7,7 @@
 import { ScoreProps } from "@/types";
 import getCollection, { ALIAS_COLLECTION } from "@/db";
 
-export default async function getAllPosts(): Promise<ScoreProps[]> {
+export default async function getAllScores(): Promise<ScoreProps[]> {
   const postsCollection = await getCollection(ALIAS_COLLECTION);
   const data = await postsCollection.find().sort({"score": -1}).toArray();
 
