@@ -87,6 +87,8 @@ export default function GamePage() {
             const newRounds = correctMovies.map((correctMovie) => {
                 // pick 3 random from the rest
                 const threeRandomIncorrect = pickRandomIncorrect(allMovies, correctMovie.id, 3);
+
+                // combine the 3 random choices with the correct answer and shuffle them
                 const fourOptions = shuffleArray([correctMovie, ...threeRandomIncorrect]);
 
                 return {

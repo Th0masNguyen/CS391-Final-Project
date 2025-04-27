@@ -25,7 +25,6 @@ export default function ChoiceButtons({
                         <button
                             key={option.id}
                             onClick={() => onGuess(option)}
-                            // disabled={disabled && !isSelected}
                             className={`
                                 ${isSelected ? "bg-blue-300 transform translate-y-1" : "bg-[#5863F8] shadow-md"}
                                 text-white
