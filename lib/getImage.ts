@@ -7,11 +7,12 @@
 import {ImageResponse} from "@/types";
 
 export default async function getImage(movieId: number): Promise<string | null> {
+  const TMDB_API_KEY = process.env.TMDB_API_KEY;
   try {
     const response = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
       method: 'GET',
       headers: {
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyYTJjOTIzOGRlZDQ3NDkyYThkNmU3MjJkMWNjMDcxZiIsIm5iZiI6MTc0NDM4NDQ2OC4wMTEwMDAyLCJzdWIiOiI2N2Y5MzFkNDFiYzYzOTU2NmFkYTJiOTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.5hvjZR8JflCyd_GE0pPVkDxjY-c4KAgkWvEBBU7uaXo',
+        Authorization: `Bearer ${TMDB_API_KEY}`,
         accept: 'application/json',
       },
     });

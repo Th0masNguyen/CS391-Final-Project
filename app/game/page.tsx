@@ -148,6 +148,8 @@ export default function GamePage() {
 
     // render the main game content
     //Begin Colton Connolly's code
+    // Colton wrote out this logic as separate functions called from within this return to determine what to render,
+    // Eytan refactored it here to be more concise and all in one place
     return (
         <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-25 pb-10"}>
             {/* If the game is over, render the GameEndDisplay component, otherwise
