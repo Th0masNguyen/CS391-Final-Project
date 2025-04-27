@@ -41,3 +41,17 @@ export type ScoreProps = {
   name: string;
   score: number;
 };
+
+export type Image = {
+  aspect_ratio: number;
+  file_path: string;
+  height: number;
+  width: number;
+  iso_639_1: string | null;
+};
+
+export type ImageResponse = {
+  backdrops: Image[];
+  posters: Image[];
+  logos: Image[];
+};

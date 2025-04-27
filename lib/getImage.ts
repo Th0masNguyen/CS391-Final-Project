@@ -4,19 +4,7 @@
 
 "use server";
 
-type Image = {
-  aspect_ratio: number;
-  file_path: string;
-  height: number;
-  width: number;
-  iso_639_1: string | null;
-};
-
-type ImageResponse = {
-  backdrops: Image[];
-  posters: Image[];
-  logos: Image[];
-};
+import {ImageResponse} from "@/types";
 
 export default async function getImage(movieId: number): Promise<string | null> {
   try {

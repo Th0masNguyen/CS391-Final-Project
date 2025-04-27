@@ -3,7 +3,7 @@
  * Get's all user and score pairs for leaderboard
 */
 
-
+"use server";
 import { ScoreProps } from "@/types";
 import getCollection, { ALIAS_COLLECTION } from "@/db";
 

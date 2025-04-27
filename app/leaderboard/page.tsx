@@ -5,6 +5,12 @@
 */
 
 import DisplayScores from "@/components/DisplayScores"
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Leaderboard | FlickPic",
+    description: "See the top scores and players in FlickPic!",
+};
 
 export default function Leaderboard() {
     return(
