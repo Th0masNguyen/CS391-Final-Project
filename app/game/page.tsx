@@ -149,7 +149,7 @@ export default function GamePage() {
         <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-20"}>
             {
                 gameOver ?
-                    <GameEndDisplay />
+                    <GameEndDisplay score={score}/>
                 :
                     <>
                         <GameStateDisplay roundNumber={roundNumber + 1} score={score} username={username}/>
