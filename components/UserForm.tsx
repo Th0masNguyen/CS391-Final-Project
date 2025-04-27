@@ -6,6 +6,7 @@
  */
 import {FormEvent, useState} from "react";
 import {redirect} from "next/navigation";
+import getUser from "@/lib/getUser";
 
 // Takes the username (string) and setUsername function to change the username state and renders a form
 // for the user to enter a username and begin the game
@@ -13,13 +14,20 @@ export default function UserForm({ username, setUsername } : { username: string,
     const [errorMessage, setErrorMessage] = useState("");
 
     // run on submit to handle bad input and redirect to the game page
-    function handleSubmit(e : FormEvent) : void {
+    async function handleSubmit(e : FormEvent) : Promise<void> {
         e.preventDefault();
 
         // if the user entered only whitespace, don't redirect and show an error message
         const trimmed = username.trim();
         if (trimmed.length === 0) {
-            setErrorMessage("Please enter a valid username.")
+            setErrorMessage("Please enter a valid username.");
+            return;
+        }
+
+        // if the username is already in the database, don't redirect and show an error message
+        const userExists = await getUser(trimmed);
+        if (userExists) {
+            setErrorMessage("This username is taken. Please enter a new one.");
             return;
         }
 
@@ -56,7 +64,7 @@ export default function UserForm({ username, setUsername } : { username: string,
             </button>
 
             {/* conditionally render the error message if there is one */}
-            {errorMessage && <p className={"text-red-500 text-xl mt-8"}>{errorMessage}</p>}
+            {errorMessage && <p className={"text-center text-red-500 text-xl mt-8"}>{errorMessage}</p>}
         </form>
     );
 }

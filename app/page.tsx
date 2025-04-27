@@ -17,7 +17,11 @@ export default function Home() {
     return (
         <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
             <h1 className={"text-6xl font-semibold m-10"}>FlickPic</h1>
+
+            {/* Form to enter a username and begin the game */}
             <UserForm username={username} setUsername={setUsername} />
+
+            {/* Game instructions */}
             <ul className="mt-5 text-center space-y-2 text-xl">
                 <li>Guess which movie each image came from.</li>
                 <li>You have 10 rounds to get as many correct as you can.</li>

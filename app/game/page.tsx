@@ -57,10 +57,12 @@ export default function GamePage() {
     // End Eytan Mobilio's code
 
     // Begin Colton Connolly's code
+    // function to increment the round number
     function nextRound() {
         setRoundNumber(roundNumber+1);
     }
 
+    // function to end the game, setting the game over state and adding the user's score to the db
     function endGame() {
         setGameOver(true);
         addScore(username, score);
@@ -148,6 +150,8 @@ export default function GamePage() {
     //Begin Colton Connolly's code
     return (
         <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-20"}>
+            {/* If the game is over, render the GameEndDisplay component, otherwise
+             render the GameState component and the current round image */}
             {
                 gameOver ?
                     <GameEndDisplay score={score}/>
@@ -157,6 +161,9 @@ export default function GamePage() {
                         <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
                     </>
             }
+
+            {/* If the game is over, don't render any buttons, otherwise if the user hasn't answered render
+             the buttons for the guesses, if they have answered render the RoundFeedback and next round button */}
             {
                 gameOver ?
                     <>
