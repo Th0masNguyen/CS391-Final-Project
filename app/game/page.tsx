@@ -145,6 +145,7 @@ export default function GamePage() {
     }
 
     // render the main game content
+    //Begin Colton Connolly's code
     return (
         <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-20"}>
             {
@@ -178,5 +179,6 @@ export default function GamePage() {
             }
         </main>
     );
+    //End Colton Connolly's code
     // End Eytan Mobilio's code
 }
