@@ -17,7 +17,7 @@ import GameStateDisplay from "@/components/GameStateDisplay";
 import NextRoundButton from "@/components/NextRoundButton";
 import RoundFeedback from "@/components/RoundFeedback";
 import GameEndDisplay from "@/components/GameEndDisplay";
-import addScore from "@/lib/addScoreToDb";
+import addScore from "@/lib/addScore";
 
 export default function GamePage() {
     // Begin Eytan Mobilio's code
@@ -59,6 +59,11 @@ export default function GamePage() {
     // Begin Colton Connolly's code
     function nextRound() {
         setRoundNumber(roundNumber+1);
+    }
+
+    function endGame() {
+        setGameOver(true);
+        addScore(username, score);
     }
     // End Colton Connolly's code
 
@@ -129,58 +134,6 @@ export default function GamePage() {
     }, [roundNumber, rounds]);
     // End Eytan Mobilio's code
 
-    //Begin Colton Connolly's code
-
-    function endGame() {
-        setGameOver(true);
-        addScore(username, score);
-    }
-
-    function displayEndGameOrNot() {
-        if(gameOver) {
-            return (
-                <>
-                    <GameEndDisplay score={score}/>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <GameStateDisplay roundNumber={roundNumber + 1} score={score} username={username}/>
-                    <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
-                </>
-            )
-        }
-    }
-
-
-    function displayProperOptions() {
-        if(gameOver) {
-            return;
-        } else if(!answered) {
-            return(
-                <>
-                    <ChoiceButtons
-                        options={rounds[roundNumber].options}
-                        onGuess={checkGuess}
-                        selectedOption={selectedOption}
-                    />
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <RoundFeedback
-                    guessState={guessState}
-                    correctAnswer={answer?.title}
-                    />
-                    <NextRoundButton  onSelectIfOver={endGame} onSelectIfNotOver={nextRound} round={roundNumber}/>
-                </>
-            )
-        }
-    }
-    //End Colton Connolly's code
-
     // Begin Eytan Mobilio's code
     // if the rounds or image haven't been set yet, render a loading state
     if (rounds.length === 0 || !rounds[roundNumber] || !image || !roundReady) {
@@ -190,15 +143,40 @@ export default function GamePage() {
             </main>
         );
     }
-    // End Eytan Mobilio's code
 
     // render the main game content
     return (
-        <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8]"}>
-            {displayEndGameOrNot()} {/* Colton Connolly wrote this */}
-            {displayProperOptions()}  {/* Colton Connolly wrote this */}
+        <main className={"flex flex-col items-center justify-center w-full h-full text-[#5863F8] pt-20"}>
+            {
+                gameOver ?
+                    <GameEndDisplay />
+                :
+                    <>
+                        <GameStateDisplay roundNumber={roundNumber + 1} score={score} username={username}/>
+                        <img src={image} alt={"Round image"} className={"w-[80%] md:w-[50%] h-auto mb-10 border-2 border-[#5863F8]"} />
+                    </>
+            }
+            {
+                gameOver ?
+                    <>
+                    </>
+                :
+                !answered ?
+                    <ChoiceButtons
+                        options={rounds[roundNumber].options}
+                        onGuess={checkGuess}
+                        selectedOption={selectedOption}
+                    />
+                :
+                    <>
+                        <RoundFeedback
+                            guessState={guessState}
+                            correctAnswer={answer?.title}
+                        />
+                        <NextRoundButton  onSelectIfOver={endGame} onSelectIfNotOver={nextRound} round={roundNumber}/>
+                    </>
+            }
         </main>
     );
-    
+    // End Eytan Mobilio's code
 }
-

@@ -36,6 +36,8 @@ export default function ChoiceButtons({
                                 hover:bg-[#5158BB]
                                 disabled:opacity-50
                                 disabled:cursor-not-allowed
+                                border-green-400 
+                                border-1
                              `}
                         >
                             {option.title}

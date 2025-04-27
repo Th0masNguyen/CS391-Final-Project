@@ -11,7 +11,7 @@ export default function NextRoundButton({ onSelectIfOver, onSelectIfNotOver, rou
     if(round === 9) {
         return (
             <div className="flex flex-col gap-4">
-                <button className="bg-[#5863F8] text-black text-2xl px-10 py-6 rounded hover:bg-[#5158BB]"
+                <button className="bg-[#5863F8] text-black text-2xl px-10 py-3 rounded hover:bg-[#5158BB] border-green-400 border-1"
                 onClick={() => onSelectIfOver()}>
                     End Game
                 </button>
@@ -20,7 +20,7 @@ export default function NextRoundButton({ onSelectIfOver, onSelectIfNotOver, rou
     } else {
         return (
             <div className="flex flex-col gap-4">
-                <button className="bg-[#5863F8] text-black text-2xl px-10 py-6 rounded hover:bg-[#5158BB]"
+                <button className="bg-[#5863F8] text-black text-2xl px-10 py-3 rounded hover:bg-[#5158BB] border-green-400 border-1"
                 onClick={() => onSelectIfNotOver()}>
                     Next Round
                 </button>
