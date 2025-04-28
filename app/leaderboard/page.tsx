@@ -6,6 +6,8 @@
 
 import DisplayScores from "@/components/DisplayScores"
 import { Metadata } from "next";
+export const dynamic = "force-dynamic"; //forces fresh fetches
+
 
 // Metadata for leaderboard page
 export const metadata: Metadata = {
