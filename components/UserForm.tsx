@@ -52,13 +52,13 @@ export default function UserForm({ username, setUsername } : { username: string,
                 value={username}
                 required
                 onChange={(e) => setUsername(e.target.value)}
-                className={"bg-white p-1 border-2 border-[#5863F8]"}
+                className={"bg-white p-1 border-2 border-[#5863F8] w-[55%]"}
             />
 
             {/* submit button to start the game */}
             <button
                 type="submit"
-                className={"bg-[#5863F8] text-2xl text-black mt-8 w-[70%] p-1 rounded hover:bg-[#5158BB] border-green-400 border-1"}
+                className={"bg-[#5863F8] text-2xl text-black mt-8 w-[75%] p-1 rounded hover:bg-[#5158BB] border-green-400 border-1"}
             >
                 Play
             </button>
