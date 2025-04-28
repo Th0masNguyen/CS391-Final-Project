@@ -5,6 +5,8 @@
 */
 
 import getAllScores from "@/lib/getAllScores";
+export const dynamic = "force-dynamic"; //forces fresh fetches
+
 
 // Function that displays all of the scores in the database in a table
 export default async function DisplayScores() {
